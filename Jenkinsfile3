@@ -34,10 +34,5 @@ pipeline {
             appmavenjenkins.push()
           }
         }
-        stage('Deploy') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-            }
-        }
     }
 }
