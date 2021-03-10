@@ -8,10 +8,12 @@ pipeline {
     stages {
 
         stage('Verificación SCM') {
-          script {
-            checkout scm
-            sh "git rev-parse --short HEAD > .git/commit-id"  
-            def gitcommit = readFile('.git/commit-id').trim()
+          steps {
+            script {
+              checkout scm
+              sh "git rev-parse --short HEAD > .git/commit-id"  
+              def gitcommit = readFile('.git/commit-id').trim()
+            }
           }  
         }
         stage('Build') {
@@ -30,11 +32,13 @@ pipeline {
             }
         }
         stage('Docker Build & Push') {
-          script {  
-            docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-              def appmavenjenkins = docker.build("macloujulian/mavenjenkins:${gitcommit}", ".")
-              appmavenjenkins.push()
-            }
+          steps {
+            script {  
+              docker.withRegistry('https://registry.hub.docker.com', 'docker') {
+                def appmavenjenkins = docker.build("macloujulian/mavenjenkins:${gitcommit}", ".")
+                appmavenjenkins.push()
+              }
+            }  
           }  
         }
     }
