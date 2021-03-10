@@ -6,6 +6,13 @@ pipeline {
     }
     
     stages {
+    
+        def gitcommit
+        stage('Verificación SCM') {
+            checkout scm
+            sh "git rev-parse --short HEAD > .git/commit-id"                        
+            gitcommit = readFile('.git/commit-id').trim()
+        }
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -23,8 +30,8 @@ pipeline {
         }
         stage('Docker Build & Push') {
           docker.withRegistry('https://registry.hub.docker.com', 'docker') {
-            def nuestraapp = docker.build("macloujulian/nodejsapp:${gitcommit}", ".")
-            nuestraapp.push()
+            def appmavenjenkins = docker.build("macloujulian/mavenjenkins:${gitcommit}", ".")
+            appmavenjenkins.push()
           }
         }
         stage('Deploy') {
