@@ -1,8 +1,6 @@
 node {
  
-    tools {
-        maven 'mavenjenkins'
-    }
+    def maven = tool 'mavenjenkins'
          
     def gitcommit
     stage('Verificación SCM') {
