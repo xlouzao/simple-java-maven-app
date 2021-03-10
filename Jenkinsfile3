@@ -5,9 +5,10 @@ pipeline {
         maven 'mavenjenkins'
     }
     
+    def gitcommit
+    
     stages {
     
-        def gitcommit
         stage('Verificación SCM') {
             checkout scm
             sh "git rev-parse --short HEAD > .git/commit-id"                        
