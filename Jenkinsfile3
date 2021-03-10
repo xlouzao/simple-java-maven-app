@@ -9,9 +9,10 @@ pipeline {
     
         stage('Verificación SCM') {
             steps {
+                def gitcommit
                 checkout scm
                 sh "git rev-parse --short HEAD > .git/commit-id"                        
-                def gitcommit = readFile('.git/commit-id').trim()
+                gitcommit = readFile('.git/commit-id').trim()
             }    
         }
         stage('Build') {
