@@ -1,6 +1,8 @@
 pipeline {
     agent any
-    
+    environment {
+        gitcommit = "${gitcommit}"
+    }
     tools {
         maven 'mavenjenkins'
     }
@@ -12,7 +14,7 @@ pipeline {
             script {
               checkout scm
               sh "git rev-parse --short HEAD > .git/commit-id"  
-              def gitcommit = readFile('.git/commit-id').trim()
+              gitcommit = readFile('.git/commit-id').trim()
             }
           }  
         }
