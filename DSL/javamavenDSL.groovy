@@ -23,7 +23,7 @@ job('Aplicacion Java Maven DSL') {
     publishers {
         archiveArtifacts('target/*.jar')
         archiveJunit('target/surefire-reports/*.xml')
-	      slackNotifier {
+	slackNotifier {
             notifyAborted(true)
             notifyEveryFailure(true)
             notifyNotBuilt(false)
