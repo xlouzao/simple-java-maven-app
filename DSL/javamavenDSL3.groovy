@@ -42,12 +42,3 @@ job('Aplicacion Java Maven DSL 3') {
        }
     }
 }
-
-job('Job test Hello World) {
-    description('Aplicación Hello World de prueba')
-    steps {
-        shell('''
-            echo "Hola mundo!"
-        ''')
-    }
-}    
