@@ -45,3 +45,12 @@ job('Aplicacion Clase 2 Java Maven DSL 2') {
        }
     }
 }
+
+job('Job test Hola Mundo') {
+	description('Aplicacion Hola Mundo de Prueba')
+	steps {
+		shell('''
+			echo "Hola Mundo!"
+		''')
+	}
+}
