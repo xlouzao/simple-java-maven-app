@@ -1,4 +1,4 @@
-job('Aplicacion Clase 2 Java Maven DSL 2') {
+job('Java Maven App DSL 3') {
     description('Java Maven App con DSL para el curso de Jenkins')
     scm {
         git('https://github.com/macloujulian/simple-java-maven-app.git', 'master') { node ->
@@ -20,7 +20,7 @@ job('Aplicacion Clase 2 Java Maven DSL 2') {
         }
         shell('''
           echo "Entrega: Desplegando la aplicación" 
-          java -jar "/var/jenkins_home/workspace/Aplicacion Clase 2 Java Maven DSL 2/target/my-app-1.0-SNAPSHOT.jar"
+          java -jar "/var/jenkins_home/workspace/Java Maven App DSL 3/target/my-app-1.0-SNAPSHOT.jar"
         ''')  
     }
     publishers {
